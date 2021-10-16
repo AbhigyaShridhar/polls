@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}
+  Result and Stats
+{% endblock %}
+
+{% block heading %}
+  {{ poll.content }}
+{% endblock %}
+
+{% block main %}
+  <br>
+  These are the voting trends for this poll: <br>
+  {% for choice in choices %}
+    <ul>
+      <li>{{ choice.text }} - {{ choice.votes }} votes</li>
+      <br>
+    </ul>
+  {% endfor %}
+<br><br>
+
+{% endblock %}

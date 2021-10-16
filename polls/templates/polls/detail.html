@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Poll
+{% endblock %}
+
+{% block heading %}
+  {{ poll.content }}
+{% endblock %}
+
+{% block main %}
+  Voting Complete on - {{ poll.expiry }}
+  <br>
+  {% if poll.active %}
+  Time left:
+    {{ time_left }}
+  {% endif %}
+  <br><br>
+  {% if poll.active %}
+  {% if not done %}
+  Select one of the following options to vote: <br>
+  {% for choice in choices %}
+    <ul>
+      <li><a href="{% url 'polls:vote' poll.id choice.id %}">{{ choice.text }}</a></li>
+      <br>
+    </ul>
+  {% endfor %}
+  {% else %}
+    You have Already voted for this poll <br>
+    <hr>
+    <a href="{% url 'polls:results' poll.id %}">See stats and results</a>
+  {% endif %}
+<br><br>
+  {% if poll.owner == request.user %}
+    <a href="{% url 'polls:add_choice' poll.id %}">Add more choices?</a>
+    <br>
+  {% endif %}
+  {% else %}
+  This poll has ended <br>
+  <a href="{% url 'polls:results' poll.id %}">See stats and results</a>
+  {% endif %}
+
+  {% if poll.owner == request.user %}
+  <br>
+    <a href="{% url 'polls:remove' poll.id %}">Remove This POLL</a> This Action Cannot be Undone
+    <br>
+    <a href="{% url 'polls:end' poll.id %}">End Voting for This POLL</a>
+  {% endif %}
+
+{% endblock %}

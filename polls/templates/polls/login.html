@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+  Login
+{% endblock %}
+
+{% block nav %}
+
+{% endblock %}
+
+{% block body %}
+<body class="bg-gradient-primary">
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-md-9 col-lg-12 col-xl-10">
+              <div class="card shadow-lg o-hidden border-0 my-5">
+                  <div class="card-body p-0">
+                      <div class="row">
+                          <div class="col-lg-6 d-none d-lg-flex">
+                              <div class="flex-grow-1 bg-login-image">
+                                <div class="tenor-gif-embed" data-postid="16043627" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/hello-there-private-from-penguins-of-madagascar-hi-wave-hey-there-gif-16043627">Hello There Private From Penguins Of Madagascar GIF</a>from <a href="https://tenor.com/search/hello+there-gifs">Hello There GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+                              </div>
+                          </div>
+                          <div class="col-lg-6">
+                              <div class="p-5">
+                                  <div class="text-center">
+                                      <h4 class="text-dark mb-4">Welcome Back!</h4>
+                                  </div>
+                                  <form class="user" action="{% url 'polls:login' %}" method="post">
+                                    {% csrf_token %}
+                                      <div class="mb-3"><input class="form-control form-control-user" type="username" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Username..." name="username"></div>
+                                      <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="password"></div>
+                                      <br>
+                                      </div>
+                                      <input type="submit" name="login" value="Login" class="btn btn-primary d-block btn-user w-100" />
+                                      <hr>
+                                  </form>
+                                  <div class="text-center"><a class="small" href="{% url 'polls:register' %}">Create an Account!</a></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Add choices
+{% endblock %}
+
+{% block heading %}
+  {{ poll.content }}
+{% endblock %}
+
+{% block main %}
+  <br>
+  Add choices for this poll: <br>
+
+  <form action="{% url 'polls:add_choice' poll.id %}" method="post">
+    {% csrf_token %}
+    {{ form | crispy }}
+    {{ error }}
+    <br>
+    <input type="submit" name="add" value="ADD">
+  </form>
+
+{% endblock %}

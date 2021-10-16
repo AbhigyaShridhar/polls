@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+  Polls Home
+{% endblock %}
+
+{% block heading %}
+  {{ h }}
+{% endblock %}
+
+{% block  main %}
+  <br>
+  {% for poll in polls %}
+    <a href="{% url 'polls:detail' poll.id %}">{{ poll.content }}</a>
+    <br>By - {{ poll.owner.username }} on {{ poll.pub_date }}
+    <br>
+  {% endfor %}
+{% endblock %}

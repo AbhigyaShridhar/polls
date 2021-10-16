@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Create a Poll
+{% endblock %}
+
+{% block heading %}
+  Create a Poll
+{% endblock %}
+
+{% block main %}
+  Render Time = {{ render_time }}
+  <form action="{% url 'polls:create' %}" method="post">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <br>
+    <input type="submit" name="create" value="Create">
+  </form>
+{% endblock %}
